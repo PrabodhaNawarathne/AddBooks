@@ -14,7 +14,8 @@ class bookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Books::all()->toArray();
+        return view ('books.index',compact('books'));
     }
 
     /**
@@ -43,7 +44,8 @@ class bookController extends Controller
         ]);
         books::create($books);
 
-        return back()->with('success','Book added to db');
+        // return back()->with('success','Book added to db');
+        return redirect()->route('books.index')->with('success','Book added to db');
     }
 
     /**
@@ -65,7 +67,8 @@ class bookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $books = Books::find($id);
+        return view ('books.edit', compact('books','id'));
     }
 
     /**
