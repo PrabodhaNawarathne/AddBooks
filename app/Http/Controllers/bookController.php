@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Books;
 use Illuminate\Http\Request;
+use Excel;
+use App\Exports\exportBooks;
 
 class bookController extends Controller
 {
@@ -80,7 +82,16 @@ class bookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'author' => 'required'
+        ]);
+        $books = Books::find($id);
+        // $books -> title = $request->get('title');
+        $books -> author = $request->get('author');
+
+        $books->save();
+        return redirect()->route('books.index')->with('success', 'Author updated');
     }
 
     /**
@@ -91,6 +102,51 @@ class bookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $books = Books::find($id);
+        $books->delete();
+
+        return redirect()->route('books.index')->with('success','Record deleted');
+    }
+
+    public function cvsExport(){
+       return (new exportBooks)->download('MyBooks.csv', \Maatwebsite\Excel\Excel::CSV);
+
+    }
+    public function excelExport()
+    {
+        return (new exportBooks)->download('MyBooks.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+
+        // return Excel::store('sample',function($excel) use ($books){
+        //     $excel->$sheet('sheet name', function($sheet) use ($books){
+        //         $sheet->fromArray($books);
+        //     });
+        // })->download('csv');
+
+        // return Excel::create('example', function($excel) use($books){
+        //     $excel->sheet('mysheet', function($sheet) use($books){
+        //         $sheet->fromArray($books);
+        //     });
+        // })->download('xlsx');
+
+        // $booksArray[] = array('id','Title','Author','created_at','updated_at');
+
+        // foreach($books as $book)
+        // {
+        //     $booksArray = array(
+        //         'id' => $book->id,
+        //         'Title' => $book->title,
+        //         'Author' => $book->author,
+        //         'created_at' => $book->created_at,
+        //         'updated_at' => $book->updated_at
+        //     );
+        //     echo $book;
+        // }
+        // Excel::create('Books & Authors', function($excel) use($booksArray){
+        //     $excel->setTitle('Books & Authors');
+        //     $excel->sheet('Books & Authors', function($sheet) use($booksArray){
+        //         $sheet->fromArray($booksArray,null,'A1',false,false);
+
+        //     });
+        // })->download('xlsx');
     }
 }
