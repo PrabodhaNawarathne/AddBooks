@@ -2,8 +2,8 @@
 @section('content')
 <div class="row">
    <div class="col-md-12">
-      <div style="height:30%">
-         <h3 align="center">Your Favourite Books</h3>
+      <div style="height:20%">
+         <h3 align="center" style="margin-top:3%">My Favourite Books</h3>
          <!-- @if (\Session::has('success'))
             <div class="alert alert-success">
                 <p>{{ \Session::get('success') }}</p>
@@ -13,41 +13,40 @@
       <div>
          <div>
             <a  align="left" class="btn btn-primary float-right" style="margin-left:1%" href="{{route('books.create')}}">New Book</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Export
-            </button>
-         </div>
-         <table id="booksTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-               <tr>
-                  <th class="th-sm">Title</th>
-                  <th class="th-sm">Author</th>
-                  <th class="th-sm">Edit</th>
-                  <th class="th-sm">Delete</th>
-               </tr>
-            </thead>
-            <tbody>
-               @foreach ($books as $row)
-               <tr>
-                  <td>{{$row['title']}}</td>
-                  <td>{{$row['author']}}</td>
-                  <td><a class="btn" href="{{action('bookController@edit', $row['id'])}}"><i class="fa fa-edit"></i></a></td>
-                  <td>
-                     <form method="post" class="delete_form"  action="{{action('bookController@destroy', $row['id'])}}">
-                        {{csrf_field()}}
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" class="btn"><i class="fa fa-trash"></i></button>
-                     </form>
-                  </td>
-               </tr>
-               @endforeach
-            </tbody>
-            <!-- <tr>
-               <th>Id</th>
-               <th>Title</th>
-               <th>Author</th>
-               </tr> -->
-         </table>
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Export</button>
+
+            <table id="booksTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th class="th-sm">Title</th>
+                    <th class="th-sm">Author</th>
+                    <th class="th-sm">Edit</th>
+                    <th class="th-sm">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($books as $row)
+                <tr>
+                    <td>{{$row['title']}}</td>
+                    <td>{{$row['author']}}</td>
+                    <td><a class="btn" href="{{action('bookController@edit', $row['id'])}}"><i class="fa fa-edit"></i></a></td>
+                    <td>
+                        <form method="post" class="delete_form"  action="{{action('bookController@destroy', $row['id'])}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn"><i class="fa fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+                </tbody>
+                <!-- <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                </tr> -->
+            </table>
+        </div>
       </div>
    </div>
 </div>
@@ -123,10 +122,11 @@
        });
    });
 
-
-
-       $(document).ready(function () {
-   $('#booksTable').DataTable();
-   });
+$(document).ready( function () {
+    $('#booksTable').DataTable();
+// $(document).ready(function () {
+//     $('#booksTable').DataTable();
+    // $('.dataTables_length').addClass('bs-select');
+});
 </script>
 @endSection
