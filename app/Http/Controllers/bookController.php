@@ -8,6 +8,7 @@ use Excel;
 use Xml;
 use App\Exports\exportBooks;
 use App\Exports\exportAuthors;
+use App\Exports\exportTitles;
 
 use Spatie\ArrayToXml\ArrayToXml;
 use Illuminate\Support\Facades\Storage;
@@ -118,9 +119,17 @@ class bookController extends Controller
         if($request->input('exportcsv')!= null){
             return Excel::download(new exportBooks, 'Books & Authors.csv');
         }
+        if($request->input('authorsCsv')!=null){
+            return Excel::download (new exportAuthors, 'Authors.csv');
+        }
+        if($request->input('titlesCsv')!=null){
+            return Excel::download (new exportTitles, 'Titles.csv');
+        }
         return redirect()->route('books.index')->with('success','Book added to db');
 
       }
+
+
 public function exportxml(Request $request){
 
     if($request->input('exportxml')!=null){
@@ -130,10 +139,18 @@ public function exportxml(Request $request){
         $result = ArrayToXml::convert(['book' => $data]);
         Storage::put('rss.xml', $result);
 
-        // return Excel::download($result, 'ddd.xml');
-        // return $result;
-
     }
+    if($request->input('authorsXml')!= null){
+        $data = Books::all('author')->toArray();
+        $result = ArrayToXml::convert(['book' => $data]);
+        Storage::put('authors.xml',$result);
+    }
+    if($request->input('titlesXml')!= null){
+        $data = Books::all('title')->toArray();
+        $result = ArrayToXml::convert(['book' => $data]);
+        Storage::put('titles.xml',$result);
+    }
+
     return redirect()->route('books.index')->with('success','Book added to db');
 }
     public function exportAuthors(Request $request){

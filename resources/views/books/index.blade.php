@@ -57,14 +57,14 @@
       <div class="modal-content">
          <!-- Modal Header -->
          <div class="modal-header">
-            <h4 class="modal-title">Export Options</h4>
+            <h5 class="modal-title align-middle">Export Options</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
          <!-- Modal body -->
          <div class="modal-body">
             <ul class="nav nav-tabs">
                <li class="nav-item"><a class="nav-link" href="#csv" data-toggle="tab">CSV</a></li>
-               <li class="nav-item"><a class="nav-link" href="#b" data-toggle="tab">baaaaa</a></li>
+               <li class="nav-item"><a class="nav-link" href="#b" data-toggle="tab">XML</a></li>
             </ul>
             <div class="tab-content">
                <!--Tab One-->
@@ -79,6 +79,9 @@
                         <div class="form-group col-sm-4">
                            <input type="submit" name="authorsCsv" value='Authors' class="btn btn-default btn-outline-success align-middle"/>
                         </div>
+                        <div class="form-group col-sm-4">
+                           <input type="submit" name="titlesCsv" value='Titles' class="btn btn-default btn-outline-success align-middle"/>
+                        </div>
                      </div>
                   </form>
                </div>
@@ -92,13 +95,19 @@
                            <input type="submit" name="exportxml" value='Export All' class="btn btn-default btn-outline-success align-middle"/>
                         </div>
                         <div class="form-group col-sm-4">
-                           <input type="submit" name="authorsCsv" value='Authors' class="btn btn-default btn-outline-success align-middle"/>
+                           <input type="submit" name="authorsXml" value='Authors' class="btn btn-default btn-outline-success align-middle"/>
+                        </div>
+                        <div class="form-group col-sm-4">
+                           <input type="submit" name="titlesXml" value='Titles' class="btn btn-default btn-outline-success align-middle"/>
                         </div>
                      </div>
                   </form>
                </div>
             </div>
          </div>
+         <div class="modal-footer">
+
+        </div>
       </div>
    </div>
 </div>
