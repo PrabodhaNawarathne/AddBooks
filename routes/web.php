@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::resource('/books','bookController');
-Route::get('export', 'bookController@excelExport')->name('export');
-Route::get('export.csv', 'bookController@cvsExport')->name('export.csv');
+Route::post('export', 'bookController@export')->name('export');
+Route::post('exportxml','bookController@exportxml')->name('exportxml');
+
+// Route::get('export', 'bookController@excelExport')->name('export');
+// Route::get('export.csv', 'bookController@cvsExport')->name('export.csv');
 
