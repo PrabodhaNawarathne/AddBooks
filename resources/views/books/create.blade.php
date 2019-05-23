@@ -21,9 +21,6 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary float-right" style="margin-left:38px">Add Book</button>
-
-                <!-- <button type="submit" class="btn btn-primary float-left" action="{{action('bookController@index')}}">Cancel</button> -->
-
             </div>
         </form>
         </div>

@@ -4,16 +4,11 @@
    <div class="col-md-12">
       <div style="height:20%">
          <h3 align="center" style="margin-top:3%">My Favourite Books</h3>
-         <!-- @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <p>{{ \Session::get('success') }}</p>
-            </div><br />
-            @endif -->
       </div>
       <div>
          <div>
             <a  align="left" class="btn btn-primary float-right" style="margin-left:1%" href="{{route('books.create')}}">New Book</a>
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Export</button>
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exportModal">Export</button>
 
             <table id="booksTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
@@ -40,26 +35,19 @@
                 </tr>
                 @endforeach
                 </tbody>
-                <!-- <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Author</th>
-                </tr> -->
             </table>
         </div>
       </div>
    </div>
 </div>
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="exportModal">
    <div class="modal-dialog">
       <div class="modal-content">
-         <!-- Modal Header -->
          <div class="modal-header">
             <h5 class="modal-title align-middle">Export Options</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
-         <!-- Modal body -->
          <div class="modal-body">
             <ul class="nav nav-tabs">
                <li class="nav-item"><a class="nav-link" href="#csv" data-toggle="tab">CSV</a></li>
@@ -124,9 +112,6 @@
 
 $(document).ready( function () {
     $('#booksTable').DataTable();
-// $(document).ready(function () {
-//     $('#booksTable').DataTable();
-    // $('.dataTables_length').addClass('bs-select');
 });
 </script>
 @endSection

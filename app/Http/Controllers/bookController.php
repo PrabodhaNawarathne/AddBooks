@@ -53,8 +53,7 @@ class bookController extends Controller
         ]);
         books::create($books);
 
-        // return back()->with('success','Book added to db');
-        return redirect()->route('books.index')->with('success','Book added to db');
+        return redirect()->route('books.index');
     }
 
     /**
@@ -94,11 +93,10 @@ class bookController extends Controller
             'author' => 'required'
         ]);
         $books = Books::find($id);
-        // $books -> title = $request->get('title');
         $books -> author = $request->get('author');
 
         $books->save();
-        return redirect()->route('books.index')->with('success', 'Author updated');
+        return redirect()->route('books.index');
     }
 
     /**
@@ -125,7 +123,7 @@ class bookController extends Controller
         if($request->input('titlesCsv')!=null){
             return Excel::download (new exportTitles, 'Titles.csv');
         }
-        return redirect()->route('books.index')->with('success','Book added to db');
+        return redirect()->route('books.index');
 
       }
 
@@ -135,9 +133,8 @@ public function exportxml(Request $request){
     if($request->input('exportxml')!=null){
 
         $data = Books::all('title','author')->toArray();
-        // $data = array_collapse($data);
         $result = ArrayToXml::convert(['book' => $data]);
-        Storage::put('rss.xml', $result);
+        Storage::put('books.xml', $result);
 
     }
     if($request->input('authorsXml')!= null){
@@ -151,7 +148,7 @@ public function exportxml(Request $request){
         Storage::put('titles.xml',$result);
     }
 
-    return redirect()->route('books.index')->with('success','Book added to db');
+    return redirect()->route('books.index');
 }
     public function exportAuthors(Request $request){
         if($request->input('authorsCsv')!=null){

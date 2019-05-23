@@ -12,9 +12,6 @@
             <input type="hidden" name="_method" value="PATCH"/>
             <div class="form-group">
                 <input type="text" name="title" class="form-control" value="{{$books['title']}}" placeholder="Enter Title" readonly/>
-                <!-- @error('title')
-                    <div class="alert alert-danger">Title cannot be null !!</div>
-                @enderror -->
             </div>
             <div class="form-group">
                 <input type="text" name="author" class="form-control" value="{{$books['author']}}" placeholder="Enter Author"/>
