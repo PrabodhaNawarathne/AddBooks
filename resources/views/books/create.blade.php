@@ -4,7 +4,7 @@
       <div class="row">
       <div class="col-md-6 offset-3">
 
-      <h2 style="margin-top:10%">Create A Book</h2><br  />
+      <h2 class="text" style="margin-top:3%">Create A Book</h2><br  />
         <form method="post" action="{{url('books')}}">
         {{csrf_field()}}
             <div class="form-group">
@@ -21,6 +21,8 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary float-right" style="margin-left:38px">Add Book</button>
+                <a  align="left" class="btn btn-primary float-right" style="margin-left:1%" href="{{route('books.index')}}">Cancel</a>
+
             </div>
         </form>
         </div>

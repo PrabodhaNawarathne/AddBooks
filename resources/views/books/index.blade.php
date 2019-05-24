@@ -3,7 +3,7 @@
 <div class="row">
    <div class="col-md-12">
       <div style="height:20%">
-         <h3 align="center" style="margin-top:3%">My Favourite Books</h3>
+         <h3 class="text" align="center" style="margin-top:3%">My Favourite Books</h3>
       </div>
       <div>
          <div>
